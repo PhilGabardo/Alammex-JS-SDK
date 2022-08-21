@@ -1,0 +1,34 @@
+{
+  "name": "alammex-sdk-js",
+  "version": "1.0.1",
+  "description": "Alammex JS SDK for fetching and executing swap quotes",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "keywords": [
+    "alammex",
+    "algorand",
+    "dex"
+  ],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "example": "node -e 'import(\"./example/example.js\")'",
+    "build": "tsdx build"
+  },
+  "homepage": "https://alammex.com",
+  "dependencies": {
+    "algosdk": "^1.19.0",
+    "axios": "^0.27.2",
+    "tsdx": "^0.14.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PhilGabardo/Alammex-JS-SDK.git"
+  },
+  "directories": {
+    "example": "example"
+  }
+}
