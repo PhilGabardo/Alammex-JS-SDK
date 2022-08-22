@@ -3,6 +3,10 @@ Alammex JS SDK for fetching
 - Alammex quote for a swap
 - the transaction group to execute a given Alammex quote
 
+### Installation
+
+Run: `npm install alammex-sdk-js`
+
 ## Fetch Alammex Quote
 
 To fetch an Alammex quote, initialize the client and use:
