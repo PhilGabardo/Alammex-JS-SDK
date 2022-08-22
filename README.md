@@ -43,7 +43,7 @@ const swapperAddress = 'DWQXOZMGDA6QZRSPER6O4AMTO3BQ6CEJMFO25EWRRBK72RJO54GLDCGK
 const swapperSecretKey = 'bottom stone elegant just symbol bunker review curve laugh burden jewel pepper replace north tornado alert relief wrist better property spider picture insect abandon tuna'
 const swapperAccount = algosdk.mnemonicToSecretKey(swapperSecretKey)
 const slippage = 0.5
-const referrer = '' // referrer address, for getting 50% of commission fees (implementation is still in progress)
+const referrer = '' // referrer address, for getting 50% of commission fees (see https://docs.alammex.com/developers/alammex-referral-program)
 const txnGroup = await client.getSwapQuoteTransactions(swapperAddress, quote, slippage, referrer)
 
 
