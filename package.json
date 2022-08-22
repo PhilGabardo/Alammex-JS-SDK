@@ -1,6 +1,6 @@
 {
   "name": "alammex-sdk-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Alammex JS SDK for fetching and executing swap quotes",
   "main": "dist/index.js",
   "module": "dist/index.js",
