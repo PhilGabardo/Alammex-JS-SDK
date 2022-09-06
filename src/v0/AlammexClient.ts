@@ -41,7 +41,7 @@ export default class AlammexClient {
 		return AlammexQuote.fromAPIResponse(quote)
 	}
 
-	async getFixedOutputSwapQuote(fromASAId, toASAId, amount) : Promise<AlammexQuote> {
+	async getFixedOutputSwapQuote(fromASAId, toASAId, amount, disabledProtocols = [], maxGroupSize = 16) : Promise<AlammexQuote> {
 		const quote = await fetchApiData(this.chain, 'fetchQuote', {
 			algodUri: this.algodUri,
 			algodToken: this.algodToken,
@@ -50,6 +50,8 @@ export default class AlammexClient {
 			amount: amount,
 			fromASAID: fromASAId,
 			toASAID: toASAId,
+			disabledProtocols: disabledProtocols,
+			maxGroupSize: maxGroupSize
 		})
 		return AlammexQuote.fromAPIResponse(quote)
 	}
