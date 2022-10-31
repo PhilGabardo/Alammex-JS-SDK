@@ -34,13 +34,14 @@ const amount = 1000000 // amount in base units. This would equate to 1 ALGO (sin
 const client = AlammexClient.fetchTestnetClient(uri, token, '', apiKey)
 const quote = await client.getFixedInputSwapQuote(inputAssetId, outputAssetId, amount)
 
+const accountInfo = await algod.accountInformation(sender.addr).do()
+const optedInAppIds = 'apps-local-state' in accountInfo ? accountInfo['apps-local-state'].map((state) => parseInt(state.id)) : []
 const requiredAppOptIns = quote.requiredAppOptIns
 
 // opt into required app for swap
 for (let i = 0; i < requiredAppOptIns.length; i++) {
 	const requiredAppId = requiredAppOptIns[i]
-	const accountInfo = await algod.accountApplicationInformation(sender.addr, requiredAppId).do()
-	if (!('app-local-state' in accountInfo)) {
+	if (!optedInAppIds.includes(requiredAppId)) {
 		const appOptInTxn = algosdk.makeApplicationOptInTxn(sender.addr, params, requiredAppId)
 		const signedTxn = appOptInTxn.signTxn(sender.sk)
 		await algod
