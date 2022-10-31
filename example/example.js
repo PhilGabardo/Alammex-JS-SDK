@@ -2,8 +2,8 @@ const alammex = require("../.");
 const algosdk = require("algosdk")
 
 async function run() {
-	const token = '<INSERT ALGOD TOKEN>'
-	const uri = '<INSERT ALGOD URI>'
+	const token = ''
+	const uri = 'https://node.testnet.algoexplorerapi.io'
 	const apiKey = ''
 	const client = alammex.AlammexClient.fetchTestnetClient(uri, token, '', apiKey)
 	const quote = await client.getFixedInputSwapQuote(0, 10458941, 1000000)
@@ -14,10 +14,11 @@ async function run() {
 	const requiredAppOptIns = quote.requiredAppOptIns
 
 	// opt into required app for swap
+	const accountInfo = await algod.accountInformation(sender.addr).do()
+	const optedInAppIds = 'apps-local-state' in accountInfo ? accountInfo['apps-local-state'].map((state) => parseInt(state.id)) : []
 	for (let i = 0; i < requiredAppOptIns.length; i++) {
 		const requiredAppId = requiredAppOptIns[i]
-		const accountInfo = await algod.accountApplicationInformation(sender.addr, requiredAppId).do()
-		if (!('app-local-state' in accountInfo)) {
+		if (!optedInAppIds.includes(requiredAppId)) {
 			const appOptInTxn = algosdk.makeApplicationOptInTxn(sender.addr, params, requiredAppId)
 			const signedTxn = appOptInTxn.signTxn(sender.sk)
 			await algod
